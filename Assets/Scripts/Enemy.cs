@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour {
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
+        target = GameObject.Find("EnemyGoal").transform;
     }
     void Update()
     {
