@@ -39,20 +39,83 @@ public class Tower : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        switch (pattern)
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        bool hasTarget = false;
+        GameObject target = new GameObject(); // might need to find a better way to instantiate an empty object
+        for (int i = 0; i < enemies.Length; i++)
         {
-            case AttackPattern.First:
-                //TODO attack code
-                break;
-            case AttackPattern.Last:
-                //TODO attack code
-                break;
-            case AttackPattern.Close:
-                //TODO attack code
-                break;
-            case AttackPattern.Strong:
-                //TODO attack code
-                break;
+            //see if enemy is in range
+            if (Vector3.Distance(enemies[i].transform.position, transform.position) < range)
+            {
+                switch (pattern)
+                {
+                    case AttackPattern.First:
+                        if (hasTarget)
+                        {
+                            // see if enemy is furter along than current target
+                            if (enemies[i].GetComponent<Enemy>().GetDistanceToEnd() < target.GetComponent<Enemy>().GetDistanceToEnd())
+                            {
+                                target = enemies[i];
+                            }
+                        }
+                        else
+                        {
+                            target = enemies[i];
+                            hasTarget = true;
+                        }
+                        break;
+                    case AttackPattern.Last:
+                        if (hasTarget)
+                        {
+                            // see if enemy is not as far along as the current target
+                            if (enemies[i].GetComponent<Enemy>().GetDistanceToEnd() > target.GetComponent<Enemy>().GetDistanceToEnd())
+                            {
+                                target = enemies[i];
+                            }
+                        }
+                        else
+                        {
+                            target = enemies[i];
+                            hasTarget = true;
+                        }
+                        break;
+                    case AttackPattern.Close:
+                        if (hasTarget)
+                        {
+                            // see if enemy is closer than current target
+                            if (Vector3.Distance(enemies[i].transform.position, transform.position) < Vector3.Distance(target.transform.position, transform.position))
+                            {
+                                target = enemies[i];
+                            }
+                        }
+                        else
+                        {
+                            target = enemies[i];
+                            hasTarget = true;
+                        }
+                        break;
+                    case AttackPattern.Strong:
+                        if (hasTarget)
+                        {
+                            // see if enemy is stronger than current target
+                            if (enemies[i].GetComponent<Enemy>().GetHealth() > target.GetComponent<Enemy>().GetHealth())
+                            {
+                                target = enemies[i];
+                            }
+                        }
+                        else
+                        {
+                            target = enemies[i];
+                            hasTarget = true;
+                        }
+                        break;
+                }
+            }
+        }
+
+        if (hasTarget)
+        {
+            //run attack code
         }
 	}
 
