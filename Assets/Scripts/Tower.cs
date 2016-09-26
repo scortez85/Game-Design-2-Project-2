@@ -7,19 +7,25 @@ public class Tower : MonoBehaviour {
     private int damage; // per shot damage measure in health removed
     private int range; // attack range
     private int speed; // attack speed measured in shots per second
+    private AttackPattern pattern;
     private List<Upgrade> availableUpgrades; // all upgrades available to be added to this tower
     private List<Upgrade> activeUpgrades; // all upgrades currently active on this tower
+
+    public enum AttackPattern {First, Last, Close, Strong};
+
     public Tower()
     {
         /*
          * TODO these numbers need to be tweaked to appropriate values
          * these are just placeholders
+         * TODO come up with upgrade lists for towers
          */
         //basic tower
         cost = 100;
         range = 100;
         damage = 50;
-        damage = 1;
+        speed = 1;
+        pattern = AttackPattern.First;
         activeUpgrades = new List<Upgrade>();
         availableUpgrades = new List<Upgrade>();
     }
@@ -33,17 +39,28 @@ public class Tower : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-	
+        switch (pattern)
+        {
+            case AttackPattern.First:
+                //TODO attack code
+                break;
+            case AttackPattern.Last:
+                //TODO attack code
+                break;
+            case AttackPattern.Close:
+                //TODO attack code
+                break;
+            case AttackPattern.Strong:
+                //TODO attack code
+                break;
+        }
 	}
 
-    /* 
-     * TODO: Move first upgrade from availabeUpgrades to activeUpgrades
-     * if upgrade was successful, return true for potential debugging
-     * if no upgrades left, return false
-     */
-    public bool UpgradeTower()
+    public void UpgradeTower()
     {
-        return false;
+        /* 
+         * TODO: Move first upgrade from availabeUpgrades to activeUpgrades
+         */
     }
 
     //BEGIN getters
@@ -67,6 +84,13 @@ public class Tower : MonoBehaviour {
         return speed;
     }
     //END getters
+
+    //BEING setters
+    public void setPattern(AttackPattern pattern)
+    {
+        this.pattern = pattern;
+    }
+    //END setters
 
     //maybe this should be its own file? but we can do that later
     private class Upgrade
