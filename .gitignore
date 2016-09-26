@@ -11,13 +11,14 @@
 *.exe
 *.meta
 **/metadata
-Library/metadata/
+/Library/metadata/
+/Library/metadata/**
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # Build results
-Library/metadata/
+/[Ll]ibrary/metadata/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
