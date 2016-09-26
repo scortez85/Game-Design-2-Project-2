@@ -9,6 +9,7 @@
 *.csproj
 *.sln
 *.exe
+*.meta
 **/metadata
 metadata/
 
