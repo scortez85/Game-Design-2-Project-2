@@ -12,9 +12,11 @@
 *.meta
 *.stamp
 *.dll.mdb
+*.asset
+*.info
 **/metadata
-/Library/metadata/
-/Library/metadata/**
+/[Ll]ibrary/metadata/
+/[Ll]ibrary/metadata/**
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
