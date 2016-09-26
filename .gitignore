@@ -10,11 +10,13 @@
 *.sln
 *.exe
 **/metadata
+metadata/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # Build results
+metadata/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
