@@ -15,7 +15,7 @@ public class enemySpawn : MonoBehaviour {
         numEnemies = 0;
     }
     void Start () {
-            setWave(1);//use setWave to generate each new wave of enemies
+            setWave(1);//use setWave to generate each new wave of enemies 
     }
 
     // Update is called once per frame

@@ -20,7 +20,7 @@ public class UserCamera : MonoBehaviour {
 
     private bool lockToRearOfTarget;
     private bool allowMouseInputX = true;
-    private bool allowMouseInputY = true;
+    private bool allowMouseInputY = true; 
 
     private float xDeg = 0.0f;
     private float yDeg = 0.0f;

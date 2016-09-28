@@ -10,7 +10,7 @@ public class playerMove : MonoBehaviour {
         speed = 20;
         turning = 100;
         thirdCam = GameObject.Find("thirdCam");
-        camAnchor = GameObject.Find("cameraAnchor");
+        camAnchor = GameObject.Find("cameraAnchor"); 
 	
 	}
 	

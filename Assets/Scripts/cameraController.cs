@@ -12,7 +12,7 @@ public class cameraController : MonoBehaviour {
         cam = GameObject.FindGameObjectWithTag("MainCamera");
         camThrird = GameObject.Find("thirdCam");
         topDownCamPos = new Vector3(0, 140, 0);
-        topDownCamRot = new Quaternion(0.7071068f, 0, 0, 0.7071068f);
+        topDownCamRot = new Quaternion(0.7071068f, 0, 0, 0.7071068f); 
 	
 	}
     public void setCamera(int num)

@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour {
 
     public float GetDistanceToEnd()
     {
-        return agent.remainingDistance;
+        return agent.remainingDistance; 
     }
 
     public int GetHealth()
