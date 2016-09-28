@@ -39,6 +39,10 @@ public class Tower : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        //find list of enemies
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //transform.LookAt(enemies[0].transform.position);
+
         switch (pattern)
         {
             case AttackPattern.First:
