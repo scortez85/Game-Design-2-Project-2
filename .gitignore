@@ -9,12 +9,20 @@
 *.csproj
 *.sln
 *.exe
+*.meta
+*.stamp
+*.dll.mdb
+*.asset
+*.info
 **/metadata
+/[Ll]ibrary/metadata/
+/[Ll]ibrary/metadata/**
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # Build results
+/[Ll]ibrary/metadata/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -254,3 +262,39 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# =============== #
+# Unity generated #
+# =============== #
+[Tt]emp/
+[Oo]bj/
+[Bb]uild
+/[Ll]ibrary/metadata/
+sysinfo.txt
+*.stackdump
+ 
+# ============================================= #
+# Visual Studio / MonoDevelop / Rider generated #
+# ============================================= #
+[Ee]xported[Oo]bj/
+.vs/
+/*.userprefs
+/*.csproj
+/*.pidb
+/*.suo
+/*.sln*
+/*.user
+/*.unityproj
+/*.booproj
+/.idea*/
+ 
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store*
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+[Tt]humbs.db
+[Dd]esktop.ini
