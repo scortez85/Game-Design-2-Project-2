@@ -21,6 +21,7 @@ Temp/
 obj/
 Build
 Library/
+$PROJDIR/Library/metadata
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
