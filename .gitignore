@@ -17,12 +17,17 @@
 **/metadata
 /[Ll]ibrary/metadata/
 /[Ll]ibrary/metadata/**
+Temp/
+obj/
+Build
+Library/
+$PROJDIR/Library/metadata
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # Build results
-/[Ll]ibrary/metadata/
+[Ll]ibrary/metadata/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
