@@ -10,6 +10,8 @@ public class Tower : MonoBehaviour {
     private AttackPattern pattern;
     private List<Upgrade> availableUpgrades; // all upgrades available to be added to this tower
     private List<Upgrade> activeUpgrades; // all upgrades currently active on this tower
+    public GameObject bulletPrefab;
+    public GameObject towerRange;
 
     public enum AttackPattern {First, Last, Close, Strong};
 
@@ -33,7 +35,8 @@ public class Tower : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-	    
+        Vector3 rangeScale = new Vector3(range, 0, range);
+        towerRange.transform.localScale = rangeScale;
 	}
 	
 	// Update is called once per frame
@@ -116,6 +119,11 @@ public class Tower : MonoBehaviour {
         if (hasTarget)
         {
             //run attack code
+            transform.LookAt(target.transform);
+            GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
+            bullet.GetComponent<Rigidbody>().velocity = transform.forward * 200.0f;
+            Debug.DrawLine(transform.position, target.transform.position);
+            Destroy(bullet, 5);
         }
 	}
 
