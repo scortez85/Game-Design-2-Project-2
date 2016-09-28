@@ -36,7 +36,7 @@ public class Tower : MonoBehaviour {
 	void Start ()
     {
         Vector3 rangeScale = new Vector3(range, 0, range);
-        towerRange.transform.localScale = rangeScale;
+        towerRange.transform.localScale = rangeScale; 
 	}
 	
 	// Update is called once per frame
