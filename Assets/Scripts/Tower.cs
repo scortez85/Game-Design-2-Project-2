@@ -7,6 +7,7 @@ public class Tower : MonoBehaviour {
     private int damage; // per shot damage measure in health removed
     private int range; // attack range
     private int speed; // attack speed measured in shots per second
+    private int timeSinceLastShot;
     private AttackPattern pattern;
     private List<Upgrade> availableUpgrades; // all upgrades available to be added to this tower
     private List<Upgrade> activeUpgrades; // all upgrades currently active on this tower
@@ -24,23 +25,25 @@ public class Tower : MonoBehaviour {
          */
         //basic tower
         cost = 100;
-        range = 100;
+        range = 40;
         damage = 50;
         speed = 1;
+        timeSinceLastShot = 0;
         pattern = AttackPattern.First;
         activeUpgrades = new List<Upgrade>();
         availableUpgrades = new List<Upgrade>();
     }
 
 	// Use this for initialization
-	void Start ()
+	void Start()
     {
         Vector3 rangeScale = new Vector3(range, 0, range);
-        towerRange.transform.localScale = rangeScale; 
+        towerRange.transform.localScale = rangeScale;
+
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void Update()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         bool hasTarget = false;
@@ -58,11 +61,13 @@ public class Tower : MonoBehaviour {
                             // see if enemy is furter along than current target
                             if (enemies[i].GetComponent<Enemy>().GetDistanceToEnd() < target.GetComponent<Enemy>().GetDistanceToEnd())
                             {
+                                Destroy(target);
                                 target = enemies[i];
                             }
                         }
                         else
                         {
+                            Destroy(target);
                             target = enemies[i];
                             hasTarget = true;
                         }
@@ -73,11 +78,13 @@ public class Tower : MonoBehaviour {
                             // see if enemy is not as far along as the current target
                             if (enemies[i].GetComponent<Enemy>().GetDistanceToEnd() > target.GetComponent<Enemy>().GetDistanceToEnd())
                             {
+                                Destroy(target);
                                 target = enemies[i];
                             }
                         }
                         else
                         {
+                            Destroy(target);
                             target = enemies[i];
                             hasTarget = true;
                         }
@@ -88,11 +95,13 @@ public class Tower : MonoBehaviour {
                             // see if enemy is closer than current target
                             if (Vector3.Distance(enemies[i].transform.position, transform.position) < Vector3.Distance(target.transform.position, transform.position))
                             {
+                                Destroy(target);
                                 target = enemies[i];
                             }
                         }
                         else
                         {
+                            Destroy(target);
                             target = enemies[i];
                             hasTarget = true;
                         }
@@ -103,11 +112,13 @@ public class Tower : MonoBehaviour {
                             // see if enemy is stronger than current target
                             if (enemies[i].GetComponent<Enemy>().GetHealth() > target.GetComponent<Enemy>().GetHealth())
                             {
+                                Destroy(target);
                                 target = enemies[i];
                             }
                         }
                         else
                         {
+                            Destroy(target);
                             target = enemies[i];
                             hasTarget = true;
                         }
@@ -120,10 +131,23 @@ public class Tower : MonoBehaviour {
         {
             //run attack code
             transform.LookAt(target.transform);
-            GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
-            bullet.GetComponent<Rigidbody>().velocity = transform.forward * 200.0f;
             Debug.DrawLine(transform.position, target.transform.position);
-            Destroy(bullet, 5);
+            if (timeSinceLastShot <= 0)
+            {
+                GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
+                bullet.GetComponent<Rigidbody>().velocity = transform.forward * 200.0f;
+                bullet.GetComponent<Bullet>().SetDamage(damage);
+                Destroy(bullet, 2);
+                timeSinceLastShot = 60 / speed;
+            }
+        }
+        timeSinceLastShot--;
+
+        //delete empty game object, prevents memory leak. 
+        //we may want to find a way to avoid that all together
+        if (!target.tag.Equals("Enemy"))
+        {
+            Destroy(target);
         }
 	}
 

@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour {
     private float speed;
     private string enemyType;
     private NavMeshAgent agent;
+    public GameObject healthText;
     public Enemy()
     {
         switch(enemyType)
@@ -52,6 +53,21 @@ public class Enemy : MonoBehaviour {
                     Destroy(gameObject);
                 }
             }
+        }
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        healthText.GetComponent<TextMesh>().text = health.ToString();
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "Bullet")
+        {
+            health-=col.gameObject.GetComponent<Bullet>().GetDamage();
+            col.gameObject.GetComponent<Bullet>().SubrtractHealth(1);
         }
     }
 
