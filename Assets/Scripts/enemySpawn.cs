@@ -14,8 +14,16 @@ public class enemySpawn : MonoBehaviour {
         currentWave = waveNum;
         numEnemies = 0;
     }
+    public void nextWave()
+    {
+        if (currentWave < spawnWaves.Length)
+        {
+            setWave(currentWave + 1);
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<cameraController>().camAngle = 3;
+        }
+    }
     void Start () {
-            setWave(1);//use setWave to generate each new wave of enemies 
+            //setWave(1);//use setWave to generate each new wave of enemies 
     }
 
     // Update is called once per frame
