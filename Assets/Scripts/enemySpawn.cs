@@ -19,7 +19,7 @@ public class enemySpawn : MonoBehaviour {
         if (currentWave < spawnWaves.Length)
         {
             setWave(currentWave + 1);
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<cameraController>().camAngle = 3;
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<cameraController>().camAngle = 3; 
         }
     }
     void Start () {
