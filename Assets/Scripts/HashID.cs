@@ -3,9 +3,9 @@ using System.Collections;
 
 public class HashID : MonoBehaviour {
 
-	// Use this for initialization
+    public int speed;
 	void Start () {
-	
+        speed = Animator.StringToHash("speed");
 	}
 	
 	// Update is called once per frame
