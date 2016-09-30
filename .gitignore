@@ -9,7 +9,6 @@
 *.csproj
 *.sln
 *.exe
-*.meta
 *.stamp
 *.dll.mdb
 *.asset
